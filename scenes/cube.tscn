@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://dg70s558440ex"]
+
+[ext_resource type="Script" path="res://script/cube.gd" id="1_nkt26"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_xb7cd"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0ss0p"]
+size = Vector3(0.42522, 0.964268, 0.349609)
+
+[node name="enemy" type="CharacterBody3D" groups=["enemy"]]
+collision_layer = 2
+collision_mask = 67
+script = ExtResource("1_nkt26")
+
+[node name="CSGMesh3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.428, 0, 0, 0, 1, 0, 0, 0, 0.353, 0, 0, 0)
+layers = 2
+mesh = SubResource("BoxMesh_xb7cd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000768661, 0.0114676, 0)
+shape = SubResource("BoxShape3D_0ss0p")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_height_offset = 0.5
+simplify_epsilon = 0.061
