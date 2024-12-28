@@ -3,6 +3,7 @@ extends CharacterBody3D
 @onready var head =$head
 @onready var camera = $head/Camera3D
 @onready var gun = $head/Camera3D/weapon/gun
+@onready var animation =$AnimationPlayer 
 var speed 
 const SENS =0.005
 const WALKSPEED = 10
@@ -21,7 +22,8 @@ var weapon
 signal ray()
 
 func _ready():
-	weapon = Weapon.new()
+	
+	
 	position = Vector3(0,0,2)
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
@@ -81,15 +83,14 @@ func _physics_process(delta: float) -> void:
 	t_bob += delta* velocity.length() *float(is_on_floor())
 	camera.position = _head_bob(t_bob)
 	
-	var velocity_clamp = lerp(velocity.length(), 1.0, SPRINT*0.05)
-	var taarget_fov = fov +velocity_clamp*fov_change
-	camera.fov = taarget_fov
 	move_and_slide()
 
 func validJump():
 	return is_on_floor()
 
 func shoot():
+	
+#animation.play("weapon_shoot")
 	var space_state= camera.get_world_3d().direct_space_state
 	var screen_cursor = get_viewport().size/2
 	var origin = camera.project_ray_origin(screen_cursor)

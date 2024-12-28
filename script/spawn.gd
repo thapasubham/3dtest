@@ -14,13 +14,14 @@ func _process(delta: float) -> void:
 	
 	
 func spawn():
+	
 	if Global.count < 12 :
 		var enemy = enemies.instantiate()
 		enemy.get_children(true)
 		add_child(enemy)
+		Global.count+=1
 	pass
 
 func _on_timer_timeout() -> void:
 	spawn()
-	Global.count+=1
 	pass # Replace with function body.
