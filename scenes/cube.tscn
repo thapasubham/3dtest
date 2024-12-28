@@ -22,5 +22,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000768661, 0.0114676, 0)
 shape = SubResource("BoxShape3D_0ss0p")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-path_height_offset = 0.5
 simplify_epsilon = 0.061

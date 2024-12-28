@@ -1,8 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bvfxo00q6gudd"]
+[gd_scene load_steps=7 format=3 uid="uid://d3sdavsvf20eg"]
 
 [ext_resource type="PackedScene" uid="uid://rr08o26mukld" path="res://mesh/environment.blend" id="1_76vhi"]
-[ext_resource type="Texture2D" uid="uid://s5ipbq5h765b" path="res://addons/kenney_prototype_textures/green/texture_01.png" id="2_77ls7"]
-[ext_resource type="Texture2D" uid="uid://boil5qn6hk4ka" path="res://addons/kenney_prototype_textures/orange/texture_05.png" id="3_6tyop"]
+[ext_resource type="Texture2D" uid="uid://bki4hx5mgmh0x" path="res://addons/kenney_prototype_textures/green/texture_01.png" id="2_77ls7"]
+[ext_resource type="Texture2D" uid="uid://b6k8vn0buyqn5" path="res://addons/kenney_prototype_textures/orange/texture_05.png" id="3_6tyop"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ds6jl"]
 albedo_texture = ExtResource("2_77ls7")
