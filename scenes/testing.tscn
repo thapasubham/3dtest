@@ -20,7 +20,9 @@ sky = SubResource("Sky_3acn1")
 tonemap_mode = 2
 glow_enabled = true
 
-[sub_resource type="NavigationMesh" id="NavigationMesh_16wdh"]
+[sub_resource type="NavigationMesh" id="NavigationMesh_q2xks"]
+vertices = PackedVector3Array(-39.5271, -0.601112, -26.9704, -37.7771, -0.601112, -27.2204, -38.0271, -0.601112, -175.47, -287.027, -0.601112, -181.72, -290.777, -0.601112, -25.7204, -39.5271, -0.601112, -25.4704, -3.27713, -0.601112, -26.2204, -3.02713, -0.601112, -174.72, -1.52713, -0.601112, -10.7204, 2.72287, -0.601112, -9.97038, 2.97287, -0.601112, -11.4704, -1.02713, -0.601112, -25.9704, 5.97287, -0.601112, -11.4704, 6.22287, -0.601112, -9.72038, 203.973, -0.601112, -9.72038, 207.973, -0.601112, -169.22, -2.27713, -0.601112, -21.7204, -2.27713, -0.601112, -24.9704, -38.2771, -0.601112, -25.9704, -40.5271, -0.601112, 55.5296, -40.5271, -0.601112, 62.2796, -4.52713, -0.601112, 63.2796, -41.0271, -0.601112, 179.78, -40.5271, -0.601112, 63.5296, -41.7771, -0.601112, 63.2796, -41.7771, -0.601112, 54.7796, -295.777, -0.601112, 173.28, 2.97287, -0.601112, -7.97038, -3.27713, -0.601112, 62.2796, 5.97287, -0.601112, -7.97038, 202.223, -0.601112, 62.2796, 3.72287, 1.39889, -10.4704, 3.72287, 1.39889, -8.97038, 5.22287, 1.39889, -8.97038, 5.22287, 1.39889, -10.4704, 3.97287, -0.601112, -10.2204, 3.97287, -0.601112, -9.22038, 4.97287, -0.601112, -9.22038, 4.97287, -0.601112, -10.2204, -3.27713, -0.601112, 64.2796, -3.77713, -0.601112, 64.5296, -3.77713, -0.601112, 180.53, 198.973, -0.601112, 185.53)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(3, 0, 4), PackedInt32Array(0, 5, 4), PackedInt32Array(6, 1, 7), PackedInt32Array(7, 1, 2), PackedInt32Array(9, 8, 10), PackedInt32Array(10, 8, 11), PackedInt32Array(12, 7, 13), PackedInt32Array(13, 7, 14), PackedInt32Array(14, 7, 15), PackedInt32Array(10, 11, 12), PackedInt32Array(12, 11, 7), PackedInt32Array(11, 6, 7), PackedInt32Array(17, 16, 18), PackedInt32Array(18, 16, 19), PackedInt32Array(19, 16, 20), PackedInt32Array(20, 16, 21), PackedInt32Array(22, 24, 23), PackedInt32Array(25, 4, 5), PackedInt32Array(4, 25, 24), PackedInt32Array(22, 26, 24), PackedInt32Array(24, 26, 4), PackedInt32Array(9, 27, 8), PackedInt32Array(8, 27, 28), PackedInt32Array(29, 13, 28), PackedInt32Array(28, 13, 30), PackedInt32Array(30, 13, 14), PackedInt32Array(28, 27, 29), PackedInt32Array(34, 33, 31), PackedInt32Array(31, 33, 32), PackedInt32Array(38, 37, 35), PackedInt32Array(35, 37, 36), PackedInt32Array(40, 39, 41), PackedInt32Array(41, 39, 42), PackedInt32Array(42, 39, 30), PackedInt32Array(39, 28, 30), PackedInt32Array(23, 40, 22), PackedInt32Array(22, 40, 41)]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vumlp"]
 albedo_texture = ExtResource("3_1idys")
@@ -50,8 +52,16 @@ environment = SubResource("Environment_idx2x")
 [node name="player" parent="." instance=ExtResource("1_nv5jo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -99.7307, 31.6014, 11.1385)
 
+[node name="spawn" type="Node3D" parent="."]
+script = ExtResource("5_7cema")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="CanvasGroup" parent="." instance=ExtResource("6_wp51p")]
+
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
-navigation_mesh = SubResource("NavigationMesh_16wdh")
+navigation_mesh = SubResource("NavigationMesh_q2xks")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D"]
 transform = Transform3D(29.0068, 0, -1.2849, 0, 1.15137, 0, 0.733228, 0, 50.8305, -43.9256, -23.0442, 1.95159)
@@ -75,14 +85,6 @@ collision_layer = 5
 collision_mask = 8
 size = Vector3(2, 2, 2)
 material = SubResource("StandardMaterial3D_hl2xi")
-
-[node name="spawn" type="Node3D" parent="."]
-script = ExtResource("5_7cema")
-
-[node name="Timer" type="Timer" parent="."]
-autostart = true
-
-[node name="CanvasGroup" parent="." instance=ExtResource("6_wp51p")]
 
 [connection signal="ray" from="player" to="." method="_on_player_ray"]
 [connection signal="timeout" from="Timer" to="spawn" method="_on_timer_timeout"]

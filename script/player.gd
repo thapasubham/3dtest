@@ -3,12 +3,13 @@ extends CharacterBody3D
 @onready var head =$head
 @onready var camera = $head/Camera3D
 @onready var gun = $head/Camera3D/weapon/gun
+@onready var animation = $head/Camera3D/weapon/AnimationPlayer
 var speed 
 const SENS =0.005
-const WALKSPEED = 10
-const CROUCHSPEED = 5
-const  SPRINT = 15
-const JUMP_VELOCITY = 5
+const WALKSPEED = 5
+const CROUCHSPEED =2
+const  SPRINT = 10
+const JUMP_VELOCITY = 2
 const GRAVITY = 9
 const AMP =  0.03
 const FREQ = 2.0
@@ -21,7 +22,7 @@ var weapon
 signal ray()
 
 func _ready():
-	weapon = Weapon.new()
+
 	position = Vector3(0,0,2)
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
@@ -36,6 +37,7 @@ func  _unhandled_input(event: InputEvent):
 		
 	
 	if Input.is_action_pressed("shoot") && fire:
+		animation.play("weapon_shoot")
 		shoot()
 		fire = false
 	
@@ -88,6 +90,7 @@ func validJump():
 	return is_on_floor()
 
 func shoot():
+	
 	var space_state= camera.get_world_3d().direct_space_state
 	var screen_cursor = get_viewport().size/2
 	var origin = camera.project_ray_origin(screen_cursor)
@@ -103,7 +106,7 @@ func test_raycast(position: Vector3):
 	var bull = bullet.instantiate()
 	get_tree().root.add_child(bull)
 	bull.global_position = position
-	await get_tree().create_timer(3).timeout
+	await get_tree().create_timer(0.5).timeout
 	if bull!= null:
 		bull.queue_free()
 
