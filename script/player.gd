@@ -81,9 +81,7 @@ func _physics_process(delta: float) -> void:
 	t_bob += delta* velocity.length() *float(is_on_floor())
 	camera.position = _head_bob(t_bob)
 	
-	var velocity_clamp = lerp(velocity.length(), 1.0, SPRINT*0.05)
-	var taarget_fov = fov +velocity_clamp*fov_change
-	camera.fov = taarget_fov
+	
 	move_and_slide()
 
 func validJump():
